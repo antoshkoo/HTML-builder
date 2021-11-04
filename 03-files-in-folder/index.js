@@ -5,7 +5,7 @@ const { stdout } = process;
 const absPath = resolve(__dirname, "secret-folder");
 const absFile = (file) => join(__dirname, "secret-folder", file);
 
-const readFiles = fs.readdir(absPath, { withFileTypes: true }, (err, data) => {
+fs.readdir(absPath, { withFileTypes: true }, (err, data) => {
   if (err) throw err;
   data.forEach((el) => {
     if (el.isFile()) {
