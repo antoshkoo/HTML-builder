@@ -1,8 +1,8 @@
 const fs = require("fs");
-const { join } = require("path/posix");
+const { resolve } = require("path");
 const { stdin, stdout } = require("process");
 
-const FILE = join(__dirname, "text.txt");
+const FILE = resolve(__dirname, "text.txt");
 let output = fs.createWriteStream(FILE);
 
 stdout.write("Enter text here: ");
