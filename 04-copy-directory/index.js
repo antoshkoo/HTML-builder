@@ -24,7 +24,6 @@ async function copyFiles(files) {
       absFile = resolve(__dirname, "files", file);
       absNewFile = resolve(__dirname, absCopyPath, file);
       await copyFile(absFile, absNewFile);
-      console.log(`${file} copied`);
     }
   } catch {
     console.log("Files doesn't copied");
