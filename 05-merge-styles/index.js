@@ -1,5 +1,5 @@
 const { writeFile, readFile, readdir } = require("fs/promises");
-const { resolve } = require("path");
+const { resolve, extname } = require("path");
 
 async function createBundle() {
   try {
@@ -17,7 +17,7 @@ async function getStyles() {
     });
     css = files
       .filter((file) => file.isFile())
-      .filter((file) => file.name.split(".")[1] === "css");
+      .filter((file) => extname(file.name) === ".css");
     return css;
   } catch {
     console.log("Could not read directory, or not exists css files");

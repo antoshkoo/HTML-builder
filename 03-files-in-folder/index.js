@@ -1,10 +1,10 @@
-const fs = require("fs");
-const { resolve, join } = require("path");
+const { readdir, stat } = require("fs");
+const { resolve, join, basename, extname } = require("path");
 const { stdout } = process;
 
 const absPath = resolve(__dirname, "secret-folder");
 
-fs.readdir(absPath, { withFileTypes: true }, (err, data) => {
+readdir(absPath, { withFileTypes: true }, (err, data) => {
   if (err) throw err;
   data.forEach((el) => {
     if (el.isFile()) {
@@ -15,9 +15,10 @@ fs.readdir(absPath, { withFileTypes: true }, (err, data) => {
 
 const getFileInfo = (file) => {
   const absFile = join(__dirname, "secret-folder", file.name);
-  fs.stat(absFile, (err, stats) => {
+  stat(absFile, (err, stats) => {
     if (err) throw err;
-    const name = file.name.split(".");
-    stdout.write(`${name[0]} - ${name[1]} - ${stats.size / 1000}kb\n`);
+    const ext = extname(absFile);
+    const name = basename(absFile, ext);
+    stdout.write(`${name} - ${ext.slice(1)} - ${stats.size / 1000}kb\n`);
   });
 };
