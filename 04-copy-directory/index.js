@@ -1,8 +1,9 @@
 const { resolve } = require("path");
-const { readdir, copyFile, mkdir } = require("fs/promises");
+const { readdir, copyFile, mkdir, rm } = require("fs/promises");
 
 absPath = resolve(__dirname, "files");
 absCopyPath = resolve(__dirname, "files-copy");
+rm(absCopyPath, { recursive: true, force: true });
 
 async function copyPath() {
   await createCopyPath();
@@ -12,7 +13,7 @@ async function copyPath() {
 
 async function createCopyPath() {
   try {
-    await mkdir(absCopyPath, { recursive: true });
+    mkdir(absCopyPath, { recursive: true });
   } catch {
     console.log("Directory not created");
   }
@@ -30,4 +31,4 @@ async function copyFiles(files) {
   }
 }
 
-copyPath();
+setTimeout(copyPath, 10);
