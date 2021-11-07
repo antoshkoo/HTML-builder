@@ -31,4 +31,4 @@ async function copyFiles(files) {
   }
 }
 
-setTimeout(copyPath, 10);
+setTimeout(copyPath, 100);

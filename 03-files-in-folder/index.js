@@ -14,11 +14,11 @@ readdir(absPath, { withFileTypes: true }, (err, data) => {
 });
 
 const getFileInfo = (file) => {
-  const absFile = join(__dirname, "secret-folder", file.name);
+  const absFile = resolve(__dirname, "secret-folder", file.name);
   stat(absFile, (err, stats) => {
     if (err) throw err;
     const ext = extname(absFile);
     const name = basename(absFile, ext);
-    stdout.write(`${name} - ${ext.slice(1)} - ${stats.size / 1000}kb\n`);
+    stdout.write(`${name} - ${ext.slice(1)} - ${stats.size / 1024}kb\n`);
   });
 };
