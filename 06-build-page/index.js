@@ -19,18 +19,17 @@ async function buildProject() {
   try {
     createTemplate();
   } catch {
-    console.log("Cant create index.html");
+    console.log("Can't create index.html");
   }
   try {
-    const data = await createCSS();
-    writeFile(resolve(buildPath, "style.css"), data);
+    createCSS();
   } catch {
-    console.log("Cant create style.css");
+    console.log("Can't create style.css");
   }
   try {
     copyAssets(absAssets);
   } catch {
-    console.log("Cant copy assets");
+    console.log("Can't copy assets");
   }
 }
 
@@ -87,7 +86,7 @@ async function createCSS() {
         console.log(`Can't read file ${file.name}`);
       }
     }
-    return data;
+    writeFile(resolve(buildPath, "style.css"), data);
   } catch {
     console.log("Can't create data");
   }
@@ -115,4 +114,4 @@ async function copyAssets(dir, dest) {
   );
 }
 
-setTimeout(buildProject, 100);
+setTimeout(buildProject, 300);
