@@ -47,7 +47,7 @@ async function createTemplate() {
 }
 
 async function insertComponents(data) {
-  const exprComp = /{{\w*}}/g;
+  const exprComp = /{{\w*}}/gi;
   const allComponents = data.match(exprComp);
   for (const component of allComponents) {
     const absComponent = resolve(
