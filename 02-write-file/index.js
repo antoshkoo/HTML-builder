@@ -8,7 +8,7 @@ let output = fs.createWriteStream(FILE);
 stdout.write("Enter text here: ");
 
 stdin.on("data", (data) => {
-  if (data.toString() === "exit\n") {
+  if (data.toString().trim() === "exit") {
     stdout.write("Good bye!\n");
     process.exit();
   }
